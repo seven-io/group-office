@@ -8,14 +8,14 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                 },
                 items: [
                     {
-                        fieldLabel: t('API Key'),
+                        fieldLabel: t('apiKey'),
                         inputType: 'password',
                         name: 'apiKey',
                         required: true,
                         xtype: 'textfield',
                     },
                 ],
-                title: t('General'),
+                title: t('general'),
                 xtype: 'fieldset',
             }),
             new Ext.form.FieldSet({
@@ -24,18 +24,18 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                 },
                 items: [
                     {
-                        fieldLabel: t('From'),
+                        fieldLabel: t('from'),
                         name: 'smsFrom',
                         xtype: 'textfield',
                     },
                 ],
-                title: t('SMS'),
+                title: t('sms'),
                 xtype: 'fieldset',
             }),
         ]
         go.modules.community.sms77.SystemSettingsPanel.superclass.initComponent.call(this)
     },
     labelWidth: 125,
-    title: t('sms77'),
+    title: t('name'),
 })
 

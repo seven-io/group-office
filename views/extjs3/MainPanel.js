@@ -10,7 +10,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 autoHeight: true,
                 items: [
                     {
-                        html: t('Send bulk SMS - sms77'),
+                        html: `${t('sendBulk')} - ${t('name')}`,
                         xtype: 'box',
                     },
                     {
@@ -19,7 +19,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                     },
                     {
                         anchor: '100%',
-                        fieldLabel: t('From'),
+                        fieldLabel: t('from'),
                         name: 'from',
                         value: settings.smsFrom,
                         xtype: 'textfield',
@@ -27,7 +27,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                     {
                         allowBlank: false,
                         anchor: '100%',
-                        fieldLabel: t('Text'),
+                        fieldLabel: t('text'),
                         grow: true,
                         name: 'text',
                         required: true,
@@ -43,7 +43,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                                     Ext.getBody().unmask()
 
                                     Ext.MessageBox.alert(
-                                        t(success ? 'Success' : 'Error'),
+                                        t(success ? 'success' : 'error'),
                                         response.errors.length
                                             ? response.errors.join('<br />')
                                             : response.json,
@@ -54,7 +54,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                             })
                         },
                         scope: this,
-                        text: t('Send'),
+                        text: t('send'),
                         type: 'submit',
                     }),
                 ],
