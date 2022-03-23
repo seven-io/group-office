@@ -9,4 +9,10 @@ class Settings extends core\Settings {
      * @var string $apiKey
      */
     public $apiKey;
+
+    /**
+     * The default SMS sender identifier
+     * @var string $smsFrom
+     */
+    public $smsFrom;
 }

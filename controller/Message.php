@@ -21,6 +21,7 @@ class Message extends Controller {
      */
     public function submitBulk(array $params): array {
         $errors = [];
+        $apiKey = $params['apiKey'];
         $from = $params['from'];
         $text = $params['text'];
 
@@ -38,7 +39,7 @@ class Message extends Controller {
         $to = array_unique($to);
         $to = implode(',', $to);
 
-        $arr = (new Client)->sms(compact('from', 'text', 'to'));
+        $arr = (new Client($apiKey))->sms(compact('from', 'text', 'to'));
         $success = 100 === $arr['success'];
         $json = json_encode($arr, JSON_PRETTY_PRINT);
 

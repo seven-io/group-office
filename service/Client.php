@@ -13,8 +13,8 @@ class Client {
     /**
      * @throws Exception
      */
-    public function __construct() {
-        $this->apiKey = Settings::get()->apiKey;
+    public function __construct($apiKey = null) {
+        $this->apiKey = $apiKey ?: Settings::get()->apiKey;
         if (!$this->apiKey) throw new Exception('Missing sms77 API key');
     }
 
