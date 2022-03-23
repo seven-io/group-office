@@ -2,6 +2,9 @@
 
 # [sms77](https://www.sms77.io/) for [Group Office](https://www.group-office.com/)
 
+Adds the possibility to send SMS and make text-to-speech calls.
+Depends on the `Address book` module to be activated.
+
 ## Installation
 
 1) Copy the plugin contents into the `/groupoffice/go/modules/community/sms77` folder.
@@ -10,10 +13,11 @@
 4) Click `sms77` on the sidebar, enter your API key and click `Save`
 
 ## Usage
-### Bulk SMS
-Click `sms77` in the navigation.
+### Bulk SMS & text-to-speech calling
+Click `sms77` in the top navigation.
+Choose a message type - defauls to `SMS`.
 Enter your text of choice and optionally set a custom sender in the `from` field.
-Submit SMS dispatch by clicking `Send`.
+Submit by clicking `Send`.
 
 
 ## Support
