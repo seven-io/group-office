@@ -3,8 +3,6 @@ namespace go\modules\community\sms77;
 
 use go\modules\community\sms77\model\Settings;
 use go\core;
-use go\core\model\Module as ModuleModel;
-use Exception;
 
 /**
  * @copyright (c) 2019, Intermesh BV http://www.intermesh.nl
@@ -16,11 +14,8 @@ class Module extends core\Module {
         return "sms77 e.K. <support@sms77.io>";
     }
 
-    /**
-     * @throws Exception
-     */
-    protected function afterInstall(ModuleModel $model): bool {
-        return parent::afterInstall($model);
+    public function getDependencies(): array {
+        return array_merge(parent::getDependencies(), ['community/addressbook']);
     }
 
     /**
