@@ -18,9 +18,14 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 autoEl: 'h1',
                 html: `${t('sendBulk')} - ${t('name')}`,
             }),
-            new Ext.form.Hidden({
-                name: 'apiKey',
-                value: settings.apiKey,
+            new Ext.form.Checkbox({
+                boxLabel: t('isOrganization'),
+                checked: false,
+                fieldLabel: '',
+                //hidden: true,
+                //hideLabel: true,
+                hint: t('isOrganizationHint'),
+                name: 'filter.isOrganization',
             }),
             new go.form.RadioGroup({
                 allowBlank: false,
@@ -57,6 +62,10 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 grow: true,
                 name: 'text',
                 required: true,
+            }),
+            new Ext.form.Hidden({
+                name: 'apiKey',
+                value: settings.apiKey,
             }),
             new Ext.Button({
                 cls: 'primary',

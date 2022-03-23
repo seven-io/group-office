@@ -4,6 +4,8 @@
     'error' => 'Fehler',
     'from' => 'Absenderkennung',
     'general' => 'Allgemein',
+    'isOrganization?' => 'Ist Organisation?',
+    'isOrganizationHint' => 'Wenn gesetzt, muss Kontakt eine Organisation sein',
     'msgType' => 'Nachrichtentyp',
     'name' => 'sms77',
     'send' => 'Senden',

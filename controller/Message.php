@@ -2,7 +2,9 @@
 namespace go\modules\community\sms77\controller;
 
 use go\core\Controller;
+use go\core\db\Criteria;
 use go\core\http\Exception;
+use go\core\orm\Query;
 use go\modules\community\addressbook\model;
 use go\modules\community\sms77\service\Client;
 
@@ -13,21 +15,7 @@ use go\modules\community\sms77\service\Client;
  * @license http://www.gnu.org/licenses/agpl-3.0.html AGPLv3
  */
 class Message extends Controller {
-    /**
-     * Handle submit bulk message
-     * @param array $params
-     * @return array
-     * @throws \Exception
-     */
-    public function submitBulk(array $params): array {
-        $errors = [];
-        $apiKey = $params['apiKey'];
-        $msgType = $params['msgType'];
-        $from = $params['from'];
-        $text = $params['text'];
-
-        $contacts = model\Contact::find();
-        $pairs = []; // TODO add personalization
+    private function retrievePhones(array $contacts): array {
         $recipients = [];
 
         foreach ($contacts as $contact) {
@@ -37,9 +25,30 @@ class Message extends Controller {
                 $recipients[] = $phoneNumber->number;
             }
         }
-        $recipients = array_unique($recipients);
 
-        $client = new Client($apiKey);
+        return array_unique($recipients);
+    }
+
+    /**
+     * Handle submit bulk message
+     * @param array $params
+     * @return array
+     * @throws \Exception
+     */
+    public function submitBulk(array $params): array {
+        $errors = [];
+        $isOrganisation = $params['filter']['isOrganization'];
+        $msgType = $params['msgType'];
+        $from = $params['from'];
+        $text = $params['text'];
+        $pairs = []; // TODO add personalization
+
+        $query = model\Contact::find();
+        if ($isOrganisation) $query->where(['isOrganization' => 1]);
+        $contacts = $query->execute()->toArray();
+        $recipients = $this->retrievePhones($contacts);
+
+        $client = new Client($params['apiKey']);
         $commonArgs = compact('from', 'text');
         $success = false;
         $responses = [];

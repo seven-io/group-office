@@ -4,6 +4,8 @@
     'error' => 'Error',
     'from' => 'From',
     'general' => 'General',
+    'isOrganization' => 'Is Organization?',
+    'isOrganizationHint' => 'If checked, the contact must be an organization',
     'msgType' => 'Message Type',
     'name' => 'sms77',
     'send' => 'Send',
