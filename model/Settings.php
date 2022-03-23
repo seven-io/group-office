@@ -15,4 +15,10 @@ class Settings extends core\Settings {
      * @var string $smsFrom
      */
     public $smsFrom;
+
+    /**
+     * The default text-to-speech sender identifier
+     * @var string $voiceFrom
+     */
+    public $voiceFrom;
 }

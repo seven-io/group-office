@@ -1,13 +1,15 @@
 <?php return [
     'apiKey' => 'API Key',
-    'description' => 'Send SMS via sms77',
+    'description' => 'Send SMS and make text-to-speech calls via sms77',
     'error' => 'Error',
     'from' => 'From',
     'general' => 'General',
+    'msgType' => 'Message Type',
     'name' => 'sms77',
     'send' => 'Send',
-    'sendBulk' => 'Send bulk SMS',
+    'sendBulk' => 'Bulk Messaging',
     'sms' => 'SMS',
     'success' => 'Success',
     'text' => 'Text',
+    'voice' => 'Voice',
 ];

@@ -37,4 +37,8 @@ class Client {
     public function sms(array $data) {
         return $this->request('sms', $data);
     }
+
+    public function voice(array $data) {
+        return $this->request('voice', $data);
+    }
 }

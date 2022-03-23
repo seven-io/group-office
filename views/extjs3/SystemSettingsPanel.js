@@ -7,13 +7,12 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                     anchor: '100%',
                 },
                 items: [
-                    {
+                    new Ext.form.TextField({
                         fieldLabel: t('apiKey'),
                         inputType: 'password',
                         name: 'apiKey',
                         required: true,
-                        xtype: 'textfield',
-                    },
+                    }),
                 ],
                 title: t('general'),
                 xtype: 'fieldset',
@@ -23,13 +22,25 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                     anchor: '100%',
                 },
                 items: [
-                    {
+                    new Ext.form.TextField({
                         fieldLabel: t('from'),
                         name: 'smsFrom',
-                        xtype: 'textfield',
-                    },
+                    }),
                 ],
                 title: t('sms'),
+                xtype: 'fieldset',
+            }),
+            new Ext.form.FieldSet({
+                defaults: {
+                    anchor: '100%',
+                },
+                items: [
+                    new Ext.form.TextField({
+                        fieldLabel: t('from'),
+                        name: 'voiceFrom',
+                    }),
+                ],
+                title: t('voice'),
                 xtype: 'fieldset',
             }),
         ]
