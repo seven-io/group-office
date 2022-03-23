@@ -1,4 +1,5 @@
 <?php return [
+    'allGenders' => 'All Genders',
     'apiKey' => 'API Key',
     'description' => 'Send SMS and make text-to-speech calls via sms77',
     'error' => 'Error',

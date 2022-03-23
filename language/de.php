@@ -1,4 +1,5 @@
 <?php return [
+    'allGenders' => 'Alle Geschlechter',
     'apiKey' => 'API-Schlüssel',
     'description' => 'Versand von SMS und Text-zu-Sprachnachrichten via sms77',
     'error' => 'Fehler',

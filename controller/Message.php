@@ -37,7 +37,10 @@ class Message extends Controller {
      */
     public function submitBulk(array $params): array {
         $errors = [];
-        $isOrganisation = $params['filter']['isOrganization'];
+        $apiKey = $params['apiKey'];
+        $filter = $params['filter'];
+        $isOrganisation = $filter['isOrganization'];
+        $gender = $filter['gender'];
         $msgType = $params['msgType'];
         $from = $params['from'];
         $text = $params['text'];
@@ -45,10 +48,11 @@ class Message extends Controller {
 
         $query = model\Contact::find();
         if ($isOrganisation) $query->where(['isOrganization' => 1]);
+        if ($gender !== '') $query->where(['gender' => $gender]);
         $contacts = $query->execute()->toArray();
         $recipients = $this->retrievePhones($contacts);
 
-        $client = new Client($params['apiKey']);
+        $client = new Client($apiKey);
         $commonArgs = compact('from', 'text');
         $success = false;
         $responses = [];

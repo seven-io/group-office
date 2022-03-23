@@ -22,10 +22,32 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 boxLabel: t('isOrganization'),
                 checked: false,
                 fieldLabel: '',
-                //hidden: true,
-                //hideLabel: true,
                 hint: t('isOrganizationHint'),
                 name: 'filter.isOrganization',
+            }),
+            new go.form.RadioGroup({
+                fieldLabel: t('Gender', 'addressbook', 'community'),
+                items: [
+                    {
+                        boxLabel: t('allGenders'),
+                        inputValue: '',
+                    },
+                    {
+                        boxLabel: t('Unknown', 'addressbook', 'community'),
+                        inputValue: null,
+                    },
+                    {
+                        boxLabel: t('Male', 'addressbook', 'community'),
+                        inputValue: 'M',
+                    },
+                    {
+                        boxLabel: t('Female', 'addressbook', 'community'),
+                        inputValue: 'F',
+                    },
+                ],
+                name: 'filter.gender',
+                value: '',
+                xtype: 'radiogroup',
             }),
             new go.form.RadioGroup({
                 allowBlank: false,
