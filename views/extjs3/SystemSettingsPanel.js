@@ -24,6 +24,7 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                 items: [
                     new Ext.form.TextField({
                         fieldLabel: t('from'),
+                        maxLength: 16,
                         name: 'smsFrom',
                     }),
                 ],
@@ -37,6 +38,7 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                 items: [
                     new Ext.form.TextField({
                         fieldLabel: t('from'),
+                        maxLength: 16,
                         name: 'voiceFrom',
                     }),
                 ],
