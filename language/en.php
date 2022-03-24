@@ -3,6 +3,7 @@
     'apiKey' => 'API Key',
     'debug' => 'Debug?',
     'debugHint' => 'Validate inputs at API level but do not send messages',
+    'delay' => 'Delay',
     'description' => 'Send SMS and make text-to-speech calls via sms77',
     'error' => 'Error',
     'filters' => 'Filters',

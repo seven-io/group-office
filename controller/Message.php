@@ -1,6 +1,7 @@
 <?php
 namespace go\modules\community\sms77\controller;
 
+use DateTime;
 use go\core\Controller;
 use go\modules\community\addressbook\model;
 use go\modules\community\sms77\service\Client;
@@ -65,9 +66,15 @@ class Message extends Controller {
                 $responses[] = $arr;
                 $success = 100 === $arr['success'];
             }
-        }
-        else {
+        } else {
+            $delay = $params['delay'];
+            if ($delay) {
+                $dt = new DateTime($delay);
+                $delay = $dt->getTimestamp();
+            }
+
             $arr = $client->sms(array_merge($commonArgs, [
+                'delay' => $delay,
                 'flash' => $params['flash'],
                 'foreign_id' => $params['foreignId'],
                 'label' => $params['label'],

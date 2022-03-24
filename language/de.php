@@ -3,6 +3,7 @@
     'apiKey' => 'API-Schlüssel',
     'debug' => 'Debugmodus?',
     'debugHint' => 'Eingaben auf API-Ebene validieren, aber keine Nachrichten versenden',
+    'delay' => 'Versandzeitpunkt',
     'description' => 'Versand von SMS und Text-zu-Sprachnachrichten via sms77',
     'error' => 'Fehler',
     'filters' => 'Filter',
