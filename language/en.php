@@ -1,8 +1,11 @@
 <?php return [
     'allGenders' => 'All Genders',
     'apiKey' => 'API Key',
+    'debug' => 'Debug?',
+    'debugHint' => 'Validate inputs at API level but do not send messages',
     'description' => 'Send SMS and make text-to-speech calls via sms77',
     'error' => 'Error',
+    'filters' => 'Filters',
     'from' => 'From',
     'general' => 'General',
     'isOrganization' => 'Is Organization?',

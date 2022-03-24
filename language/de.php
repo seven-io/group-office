@@ -1,8 +1,11 @@
 <?php return [
     'allGenders' => 'Alle Geschlechter',
     'apiKey' => 'API-Schlüssel',
+    'debug' => 'Debugmodus?',
+    'debugHint' => 'Eingaben auf API-Ebene validieren, aber keine Nachrichten versenden',
     'description' => 'Versand von SMS und Text-zu-Sprachnachrichten via sms77',
     'error' => 'Fehler',
+    'filters' => 'Filter',
     'from' => 'Absenderkennung',
     'general' => 'Allgemein',
     'isOrganization?' => 'Ist Organisation?',

@@ -18,36 +18,48 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 autoEl: 'h1',
                 html: `${t('sendBulk')} - ${t('name')}`,
             }),
-            new Ext.form.Checkbox({
-                boxLabel: t('isOrganization'),
-                checked: false,
-                fieldLabel: '',
-                hint: t('isOrganizationHint'),
-                name: 'filter.isOrganization',
-            }),
-            new go.form.RadioGroup({
-                fieldLabel: t('Gender', 'addressbook', 'community'),
+            new Ext.form.FieldSet({
+                defaults: {
+                    anchor: '100%',
+                },
                 items: [
-                    {
-                        boxLabel: t('allGenders'),
-                        inputValue: '',
-                    },
-                    {
-                        boxLabel: t('Unknown', 'addressbook', 'community'),
-                        inputValue: null,
-                    },
-                    {
-                        boxLabel: t('Male', 'addressbook', 'community'),
-                        inputValue: 'M',
-                    },
-                    {
-                        boxLabel: t('Female', 'addressbook', 'community'),
-                        inputValue: 'F',
-                    },
+                    new Ext.form.Checkbox({
+                        boxLabel: t('isOrganization'),
+                        checked: false,
+                        fieldLabel: '',
+                        hint: t('isOrganizationHint'),
+                        name: 'filter.isOrganization',
+                    }),
+                    new go.form.RadioGroup({
+                        fieldLabel: t('Gender', 'addressbook', 'community'),
+                        items: [
+                            {
+                                boxLabel: t('allGenders'),
+                                inputValue: '',
+                            },
+                            {
+                                boxLabel: t('Unknown', 'addressbook', 'community'),
+                                inputValue: null,
+                            },
+                            {
+                                boxLabel: t('Male', 'addressbook', 'community'),
+                                inputValue: 'M',
+                            },
+                            {
+                                boxLabel: t('Female', 'addressbook', 'community'),
+                                inputValue: 'F',
+                            },
+                        ],
+                        name: 'filter.gender',
+                        value: '',
+                        xtype: 'radiogroup',
+                    }),
                 ],
-                name: 'filter.gender',
-                value: '',
-                xtype: 'radiogroup',
+                title: t('filters'),
+                xtype: 'fieldset',
+            }),
+            new Ext.BoxComponent({
+                autoEl: 'hr',
             }),
             new go.form.RadioGroup({
                 allowBlank: false,
@@ -70,6 +82,13 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 name: 'msgType',
                 value: 'sms',
             }),
+            new Ext.form.Checkbox({
+                boxLabel: t('debug'),
+                checked: false,
+                fieldLabel: '',
+                hint: t('debugHint'),
+                name: 'debug',
+            }),
             this.msgFrom = new Ext.form.TextField({
                 anchor: '100%',
                 fieldLabel: t('from'),
@@ -90,6 +109,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 value: settings.apiKey,
             }),
             new Ext.Button({
+                anchor: '100%',
                 cls: 'primary',
                 handler() {
                     if (this.submitting) return

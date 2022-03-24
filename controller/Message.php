@@ -2,17 +2,14 @@
 namespace go\modules\community\sms77\controller;
 
 use go\core\Controller;
-use go\core\db\Criteria;
-use go\core\http\Exception;
-use go\core\orm\Query;
 use go\modules\community\addressbook\model;
 use go\modules\community\sms77\service\Client;
 
 /**
- * The controller for the Contact entity
- * @copyright (c) 2018, Intermesh BV http://www.intermesh.nl
- * @author Merijn Schering <mschering@intermesh.nl>
- * @license http://www.gnu.org/licenses/agpl-3.0.html AGPLv3
+ * The controller for handling message related requests
+ * @copyright (c) 2021, sms77 e.K. https://www.sms77.io
+ * @author sms77 e.K. <support@sms77.io>
+ * @license https://opensource.org/licenses/MIT MIT
  */
 class Message extends Controller {
     private function retrievePhones(array $contacts): array {
@@ -29,6 +26,17 @@ class Message extends Controller {
         return array_unique($recipients);
     }
 
+    private function retrieveContacts(array $filter): array {
+        $isOrganisation = $filter['isOrganization'];
+        $gender = $filter['gender'];
+
+        $query = model\Contact::find();
+        if ($isOrganisation) $query->where(['isOrganization' => 1]);
+        if ($gender !== '') $query->where(['gender' => $gender]);
+
+        return $query->execute()->toArray();
+    }
+
     /**
      * Handle submit bulk message
      * @param array $params
@@ -38,22 +46,16 @@ class Message extends Controller {
     public function submitBulk(array $params): array {
         $errors = [];
         $apiKey = $params['apiKey'];
+        $debug = $params['debug'];
         $filter = $params['filter'];
-        $isOrganisation = $filter['isOrganization'];
-        $gender = $filter['gender'];
         $msgType = $params['msgType'];
         $from = $params['from'];
         $text = $params['text'];
         $pairs = []; // TODO add personalization
-
-        $query = model\Contact::find();
-        if ($isOrganisation) $query->where(['isOrganization' => 1]);
-        if ($gender !== '') $query->where(['gender' => $gender]);
-        $contacts = $query->execute()->toArray();
+        $contacts = $this->retrieveContacts($filter);
         $recipients = $this->retrievePhones($contacts);
-
         $client = new Client($apiKey);
-        $commonArgs = compact('from', 'text');
+        $commonArgs = compact('debug', 'from', 'text');
         $success = false;
         $responses = [];
 
