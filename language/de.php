@@ -9,6 +9,7 @@
     'flash' => 'Flash',
     'flashHint' => 'Abhängig vom Gerät werden Flash-SMS direkt im Display angezeigt und nicht gespeichert',
     'from' => 'Absenderkennung',
+    'label' => 'Label',
     'general' => 'Allgemein',
     'isOrganization?' => 'Ist Organisation?',
     'isOrganizationHint' => 'Wenn gesetzt, muss Kontakt eine Organisation sein',
