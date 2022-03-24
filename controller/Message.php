@@ -1,10 +1,10 @@
 <?php
 namespace go\modules\community\sms77\controller;
 
-use DateTime;
+use Exception;
 use go\core\Controller;
-use go\modules\community\addressbook\model;
-use go\modules\community\sms77\service\Client;
+use go\modules\community\addressbook\model\Contact;
+use go\modules\community\sms77\service\Messenger;
 
 /**
  * The controller for handling message related requests
@@ -13,81 +13,28 @@ use go\modules\community\sms77\service\Client;
  * @license https://opensource.org/licenses/MIT MIT
  */
 class Message extends Controller {
-    private function retrievePhones(array $contacts): array {
-        $recipients = [];
-
-        foreach ($contacts as $contact) {
-            /** @var model\Contact $contact */
-            foreach ($contact->phoneNumbers as $phoneNumber) {
-                if ($phoneNumber->type !== 'mobile') continue;
-                $recipients[] = $phoneNumber->number;
-            }
-        }
-
-        return array_unique($recipients);
-    }
-
-    private function retrieveContacts(array $filter): array {
-        $isOrganisation = $filter['isOrganization'];
-        $gender = $filter['gender'];
-
-        $query = model\Contact::find();
-        if ($isOrganisation) $query->where(['isOrganization' => 1]);
-        if ($gender !== '') $query->where(['gender' => $gender]);
-
-        return $query->execute()->toArray();
-    }
-
     /**
      * Handle submit bulk message
      * @param array $params
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function submitBulk(array $params): array {
-        $errors = [];
-        $apiKey = $params['apiKey'];
-        $debug = $params['debug'];
-        $filter = $params['filter'];
-        $msgType = $params['msgType'];
-        $from = $params['from'];
-        $text = $params['text'];
-        $pairs = []; // TODO add personalization
-        $contacts = $this->retrieveContacts($filter);
-        $recipients = $this->retrievePhones($contacts);
-        $client = new Client($apiKey);
-        $commonArgs = compact('debug', 'from', 'text');
-        $success = false;
-        $responses = [];
+        $messenger = new Messenger($params);
+        $messenger->setContacts($this->getBulkContacts($params['filter']));
+        $messenger->setClient($params['apiKey']);
+        return $messenger->execute();
+    }
 
-        if ('voice' === $msgType) {
-            foreach ($recipients as $to) {
-                $arr = $client->voice(array_merge($commonArgs, compact('to')));
-                $responses[] = $arr;
-                $success = 100 === $arr['success'];
-            }
-        } else {
-            $delay = $params['delay'];
-            if ($delay) {
-                $dt = new DateTime($delay);
-                $delay = $dt->getTimestamp();
-            }
+    private function getBulkContacts(array $filter): array {
+        $isOrganisation = $filter['isOrganization'];
+        $gender = $filter['gender'];
 
-            $arr = $client->sms(array_merge($commonArgs, [
-                'delay' => $delay,
-                'flash' => $params['flash'],
-                'foreign_id' => $params['foreignId'],
-                'label' => $params['label'],
-                'performance_tracking' => $params['performanceTracking'],
-                'to' => implode(',', $recipients),
-            ]));
-            $responses[] = $arr;
-            $success = 100 === $arr['success'];
-        }
+        $query = Contact::find();
+        if ($isOrganisation) $query->where(['isOrganization' => 1]);
+        if ($gender !== '') $query->where(['gender' => $gender]);
 
-        $json = json_encode($responses, JSON_PRETTY_PRINT);
-
-        return compact('errors', 'json', 'success');
+        return $query->execute()->toArray();
     }
 }
 

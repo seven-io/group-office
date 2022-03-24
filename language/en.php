@@ -25,5 +25,6 @@
     'sms' => 'SMS',
     'success' => 'Success',
     'text' => 'Text',
+    'textPlaceholder' => 'Hi {{salutation}} {{firstName}} {{lastName}}, please confirm that your IBAN is {{IBAN}}.',
     'voice' => 'Voice',
 ];

@@ -19,6 +19,11 @@ Choose a message type - defauls to `SMS`.
 Enter your text of choice and optionally set a custom sender in the `from` field.
 Submit by clicking `Send`.
 
+### Property placeholders
+Use {{columnName}} for resolving column values for the corresponding contact.
+
+**Example:** *Dear {{firstName}} {{lastName}}* may resolve to *Dear Tommy Tester*
+
 
 ## Support
 

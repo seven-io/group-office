@@ -1,5 +1,4 @@
 go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
-    autoHeight: true,
     cls: 'go-form-panel',
     layout: 'form',
     initComponent() {
@@ -144,10 +143,10 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
             this.inputText = new Ext.form.TextArea({
                 allowBlank: false,
                 anchor: '100%',
+                emptyText: t('textPlaceholder'),
                 fieldLabel: t('text'),
                 grow: true,
                 name: 'text',
-                required: true,
             }),
             new Ext.form.Hidden({
                 name: 'apiKey',
@@ -163,12 +162,12 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                         callback(options, success, response) {
                             Ext.getBody().unmask()
 
-                            Ext.MessageBox.alert(
-                                t(success ? 'success' : 'error'),
-                                response.errors.length
-                                    ? response.errors.join('<br />')
-                                    : response.json,
-                            )
+                            const title = t(success ? 'success' : 'error')
+                            const msg = response.errors.length
+                                ? response.errors.join('<br />')
+                                : response.json
+
+                            Ext.MessageBox.alert(title, msg)
                         },
                         method: 'community/sms77/Message/submitBulk',
                         params: this.getForm().getFieldValues(),
