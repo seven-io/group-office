@@ -67,9 +67,12 @@ class Message extends Controller {
             }
         }
         else {
-            $to = implode(',', $recipients);
-            $responses = $client->sms(array_merge($commonArgs, compact('to')));
-            $success = 100 === $responses['success'];
+            $arr = $client->sms(array_merge($commonArgs, [
+                'performance_tracking' => $params['performanceTracking'],
+                'to' => implode(',', $recipients),
+            ]));
+            $responses[] = $arr;
+            $success = 100 === $arr['success'];
         }
 
         $json = json_encode($responses, JSON_PRETTY_PRINT);

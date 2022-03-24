@@ -3,14 +3,17 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
     cls: 'go-form-panel',
     layout: 'form',
     initComponent() {
-        const {settings} = go.Modules.entities.find(e => e.name === 'sms77')
+        const {settings} = go.Modules.get('community', 'sms77')
 
-        this._init = function(cb, _checked) {
+        this._updateItems = function(cb, _checked) {
             const isVoice = cb.getValue() === 'voice'
             const from = isVoice ? settings.voiceFrom : settings.smsFrom
 
-            this.msgText.maxLength = isVoice ? 10000 : 1520
-            this.msgFrom.setValue(from || '')
+            this.inputText.maxLength = isVoice ? 10000 : 1520
+            this.inputFrom.setValue(from || '')
+            isVoice
+                ? this.inputPerformanceTracking.hide()
+                : this.inputPerformanceTracking.show()
         }
 
         this.items = [
@@ -25,7 +28,6 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 items: [
                     new Ext.form.Checkbox({
                         boxLabel: t('isOrganization'),
-                        checked: false,
                         fieldLabel: '',
                         hint: t('isOrganizationHint'),
                         name: 'filter.isOrganization',
@@ -61,7 +63,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
             new Ext.BoxComponent({
                 autoEl: 'hr',
             }),
-            new go.form.RadioGroup({
+            this.msgType = new go.form.RadioGroup({
                 allowBlank: false,
                 fieldLabel: t('msgType'),
                 items: [
@@ -75,28 +77,41 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                     },
                 ],
                 listeners: {
-                    change: this._init,
-                    render: this._init,
+                    change: this._updateItems,
+                    render: this._updateItems,
                     scope: this,
                 },
                 name: 'msgType',
                 value: 'sms',
             }),
-            new Ext.form.Checkbox({
-                boxLabel: t('debug'),
-                checked: false,
-                fieldLabel: '',
-                hint: t('debugHint'),
-                name: 'debug',
+            new Ext.Container({
+                defaults: {
+                    columnWidth: 0.5,
+                },
+                items: [
+                    new Ext.form.Checkbox({
+                        boxLabel: t('debug'),
+                        hint: t('debugHint'),
+                        name: 'debug',
+                    }),
+                    this.inputPerformanceTracking = new Ext.form.Checkbox({
+                        boxLabel: t('performanceTracking'),
+                        hint: `<a href='${t('performanceTrackingLink')}' target='_blank'>${t('readMore')}</a>`,
+                        name: 'performanceTracking',
+                    }),
+                ],
+                layout: 'column',
+                style: {
+                    marginLeft: '100px',
+                },
             }),
-            this.msgFrom = new Ext.form.TextField({
+            this.inputFrom = new Ext.form.TextField({
                 anchor: '100%',
                 fieldLabel: t('from'),
                 maxLength: 16,
                 name: 'from',
-                value: settings.smsFrom,
             }),
-            this.msgText = new Ext.form.TextArea({
+            this.inputText = new Ext.form.TextArea({
                 allowBlank: false,
                 anchor: '100%',
                 fieldLabel: t('text'),
