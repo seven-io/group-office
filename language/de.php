@@ -8,6 +8,7 @@
     'filters' => 'Filter',
     'flash' => 'Flash',
     'flashHint' => 'Abhängig vom Gerät werden Flash-SMS direkt im Display angezeigt und nicht gespeichert',
+    'foreignId' => 'Foreign ID',
     'from' => 'Absenderkennung',
     'label' => 'Label',
     'general' => 'Allgemein',

@@ -8,6 +8,7 @@
     'filters' => 'Filters',
     'flash' => 'Flash',
     'flashHint' => 'Depending on the device, flash SMS get displayed directly in the display and do not get saved',
+    'foreignId' => 'Foreign ID',
     'label' => 'Label',
     'from' => 'From',
     'general' => 'General',

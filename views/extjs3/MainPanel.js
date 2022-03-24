@@ -16,6 +16,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 this.inputPerformanceTracking,
                 this.inputFlash,
                 this.inputLabel,
+                this.inputForeignId,
             ]
             smsInputs.forEach(input => isVoice ? input.hide() : input.show())
         }
@@ -120,6 +121,13 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                 maxLength: 100,
                 maskRe: new RegExp(/[0-9a-zA-Z-@_. ,]/),
                 name: 'label',
+            }),
+            this.inputForeignId = new Ext.form.TextField({
+                anchor: '100%',
+                fieldLabel: t('foreignId'),
+                maxLength: 64,
+                maskRe: new RegExp(/[0-9a-zA-Z-@_. ,]/),
+                name: 'foreignId',
             }),
             this.inputFrom = new Ext.form.TextField({
                 anchor: '100%',
