@@ -11,9 +11,9 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
 
             this.inputText.maxLength = isVoice ? 10000 : 1520
             this.inputFrom.setValue(from || '')
-            isVoice
-                ? this.inputPerformanceTracking.hide()
-                : this.inputPerformanceTracking.show()
+
+            const smsInputs = [this.inputPerformanceTracking, this.inputFlash]
+            smsInputs.forEach(input => isVoice ? input.hide() : input.show())
         }
 
         this.items = [
@@ -98,6 +98,11 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
                         boxLabel: t('performanceTracking'),
                         hint: `<a href='${t('performanceTrackingLink')}' target='_blank'>${t('readMore')}</a>`,
                         name: 'performanceTracking',
+                    }),
+                    this.inputFlash = new Ext.form.Checkbox({
+                        boxLabel: t('flash'),
+                        hint: t('flashHint'),
+                        name: 'flash',
                     }),
                 ],
                 layout: 'column',

@@ -6,6 +6,8 @@
     'description' => 'Versand von SMS und Text-zu-Sprachnachrichten via sms77',
     'error' => 'Fehler',
     'filters' => 'Filter',
+    'flash' => 'Flash',
+    'flashHint' => 'Abhängig vom Gerät werden Flash-SMS direkt im Display angezeigt und nicht gespeichert',
     'from' => 'Absenderkennung',
     'general' => 'Allgemein',
     'isOrganization?' => 'Ist Organisation?',

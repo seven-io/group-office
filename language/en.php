@@ -6,6 +6,8 @@
     'description' => 'Send SMS and make text-to-speech calls via sms77',
     'error' => 'Error',
     'filters' => 'Filters',
+    'flash' => 'Flash',
+    'flashHint' => 'Depending on the device, flash SMS get displayed directly in the display and do not get saved',
     'from' => 'From',
     'general' => 'General',
     'isOrganization' => 'Is Organization?',

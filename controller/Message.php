@@ -68,6 +68,7 @@ class Message extends Controller {
         }
         else {
             $arr = $client->sms(array_merge($commonArgs, [
+                'flash' => $params['flash'],
                 'performance_tracking' => $params['performanceTracking'],
                 'to' => implode(',', $recipients),
             ]));
