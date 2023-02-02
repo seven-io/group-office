@@ -1,7 +1,7 @@
 <?php
-namespace go\modules\community\sms77;
+namespace go\modules\community\seven;
 
-use go\modules\community\sms77\model\Settings;
+use go\modules\community\seven\model\Settings;
 use go\core;
 
 /**
@@ -11,7 +11,7 @@ use go\core;
  */
 class Module extends core\Module {
     public function getAuthor(): string {
-        return "sms77 e.K. <support@sms77.io>";
+        return "seven communications GmbH & Co. KG <support@seven.io>";
     }
 
     public function getDependencies(): array {

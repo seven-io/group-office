@@ -1,4 +1,4 @@
-go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Panel, {
+go.modules.community.seven.SystemSettingsPanel = Ext.extend(go.systemsettings.Panel, {
     iconCls: 'ic-sms',
     initComponent() {
         this.items = [
@@ -46,7 +46,7 @@ go.modules.community.sms77.SystemSettingsPanel = Ext.extend(go.systemsettings.Pa
                 xtype: 'fieldset',
             }),
         ]
-        go.modules.community.sms77.SystemSettingsPanel.superclass.initComponent.call(this)
+        go.modules.community.seven.SystemSettingsPanel.superclass.initComponent.call(this)
     },
     labelWidth: 125,
     title: t('name'),

@@ -1,8 +1,8 @@
 <?php
-namespace go\modules\community\sms77\service;
+namespace go\modules\community\seven\service;
 
 use Exception;
-use go\modules\community\sms77\model\Settings;
+use go\modules\community\seven\model\Settings;
 
 class Client {
     /**
@@ -15,11 +15,11 @@ class Client {
      */
     public function __construct($apiKey = null) {
         $this->apiKey = $apiKey ?: Settings::get()->apiKey;
-        if (!$this->apiKey) throw new Exception('Missing sms77 API key');
+        if (!$this->apiKey) throw new Exception('Missing seven API key');
     }
 
     private function request(string $endpoint, array $data) {
-        $ch = curl_init('https://gateway.sms77.io/api/' . $endpoint);
+        $ch = curl_init('https://gateway.seven.io/api/' . $endpoint);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Accept: application/json',

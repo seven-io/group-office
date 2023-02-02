@@ -1,15 +1,15 @@
 <?php
-namespace go\modules\community\sms77\controller;
+namespace go\modules\community\seven\controller;
 
 use Exception;
 use go\core\Controller;
 use go\modules\community\addressbook\model\Contact;
-use go\modules\community\sms77\service\Messenger;
+use go\modules\community\seven\service\Messenger;
 
 /**
  * The controller for handling message related requests
- * @copyright (c) 2021, sms77 e.K. https://www.sms77.io
- * @author sms77 e.K. <support@sms77.io>
+ * @copyright (c) 2021, seven communications GmbH & Co. KG https://www.seven.io
+ * @author seven communications GmbH & Co. <support@seven.io>
  * @license https://opensource.org/licenses/MIT MIT
  */
 class Message extends Controller {

@@ -1,5 +1,5 @@
 <?php
-namespace go\modules\community\sms77\service;
+namespace go\modules\community\seven\service;
 
 use DateTime;
 use Exception;

@@ -1,11 +1,11 @@
 <?php
-namespace go\modules\community\sms77\model;
+namespace go\modules\community\seven\model;
 
 use go\core;
 
 class Settings extends core\Settings {
     /**
-     * The sms77 API key
+     * The seven API key
      * @var string $apiKey
      */
     public $apiKey;

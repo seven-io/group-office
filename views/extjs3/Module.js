@@ -1,11 +1,11 @@
-go.Modules.register('community', 'sms77', {
+go.Modules.register('community', 'seven', {
     entities: [],
     initModule() {
-        console.log('initModule:sms77')
+        console.log('initModule:seven')
     },
-    mainPanel: 'go.modules.community.sms77.MainPanel',
+    mainPanel: 'go.modules.community.seven.MainPanel',
     systemSettingsPanels: [
-        "go.modules.community.sms77.SystemSettingsPanel",
+        "go.modules.community.seven.SystemSettingsPanel",
     ],
     title: t('name'),
 })

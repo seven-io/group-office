@@ -1,8 +1,8 @@
-go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
+go.modules.community.seven.MainPanel = Ext.extend(Ext.FormPanel, {
     cls: 'go-form-panel',
     layout: 'form',
     initComponent() {
-        const {settings} = go.Modules.get('community', 'sms77')
+        const {settings} = go.Modules.get('community', 'seven')
 
         this._updateItems = function(cb, _checked) {
             const isVoice = cb.getValue() === 'voice'
@@ -169,7 +169,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
 
                             Ext.MessageBox.alert(title, msg)
                         },
-                        method: 'community/sms77/Message/submitBulk',
+                        method: 'community/seven/Message/submitBulk',
                         params: this.getForm().getFieldValues(),
                     })
                 },
@@ -179,7 +179,7 @@ go.modules.community.sms77.MainPanel = Ext.extend(Ext.FormPanel, {
             }),
         ]
 
-        go.modules.community.sms77.MainPanel.superclass.initComponent.call(this)
+        go.modules.community.seven.MainPanel.superclass.initComponent.call(this)
 
         this.on('afterrender', this.runModule, this)
     },
